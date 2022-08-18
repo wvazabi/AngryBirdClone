@@ -23,6 +23,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var originalPosition : CGPoint?
     
+    var originalPositionBox1 : CGPoint?
+    var originalPositionBox2 : CGPoint?
+    var originalPositionBox3 : CGPoint?
+    var originalPositionBox4 : CGPoint?
+    var originalPositionBox5 : CGPoint?
+    
+    
     var score = 0
     var scoreLabel = SKLabelNode()
     
@@ -74,18 +81,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box1.physicsBody?.isDynamic = true
         box1.physicsBody?.affectedByGravity = true
         box1.physicsBody?.allowsRotation = true
-        box1.physicsBody?.mass = 0.4
+        box1.physicsBody?.mass = 0.2
         
         box1.physicsBody?.collisionBitMask = ColliderType.Bird.rawValue
+        originalPositionBox1 = box1.position
+        
         
         box2 = childNode(withName: "box2") as! SKSpriteNode
         box2.physicsBody = SKPhysicsBody(rectangleOf: size)
         box2.physicsBody?.isDynamic = true
         box2.physicsBody?.affectedByGravity = true
         box2.physicsBody?.allowsRotation = true
-        box2.physicsBody?.mass = 0.4
+        box2.physicsBody?.mass = 0.2
         
         box2.physicsBody?.collisionBitMask = ColliderType.Bird.rawValue
+        originalPositionBox2 = box2.position
 
         
         box3 = childNode(withName: "box3") as! SKSpriteNode
@@ -93,29 +103,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         box3.physicsBody?.isDynamic = true
         box3.physicsBody?.affectedByGravity = true
         box3.physicsBody?.allowsRotation = true
-        box3.physicsBody?.mass = 0.4
+        box3.physicsBody?.mass = 0.2
         
         box3.physicsBody?.collisionBitMask = ColliderType.Bird.rawValue
-
+        originalPositionBox3 = box3.position
         
         box4 = childNode(withName: "box4") as! SKSpriteNode
         box4.physicsBody = SKPhysicsBody(rectangleOf: size)
         box4.physicsBody?.isDynamic = true
         box4.physicsBody?.affectedByGravity = true
         box4.physicsBody?.allowsRotation = true
-        box4.physicsBody?.mass = 0.4
+        box4.physicsBody?.mass = 0.2
         
         box4.physicsBody?.collisionBitMask = ColliderType.Bird.rawValue
-
+        originalPositionBox4 = box4.position
         
         box5 = childNode(withName: "box5") as! SKSpriteNode
         box5.physicsBody = SKPhysicsBody(rectangleOf: size)
         box5.physicsBody?.isDynamic = true
         box5.physicsBody?.affectedByGravity = true
         box5.physicsBody?.allowsRotation = true
-        box5.physicsBody?.mass = 0.4
+        box5.physicsBody?.mass = 0.2
         box5.physicsBody?.collisionBitMask = ColliderType.Bird.rawValue
-
+        originalPositionBox5 = box5.position
      
         //Label
         
@@ -277,10 +287,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 bird.physicsBody?.angularVelocity = 0
                 bird.zPosition = 1
                 bird.position = originalPosition!
+                box1.position = originalPositionBox1!
+                box2.position = originalPositionBox2!
+                box3.position = originalPositionBox3!
+                box4.position = originalPositionBox4!
+                box5.position = originalPositionBox5!
                 
-                
-                //score = 0
-                //scoreLabel.text = String(score)
+                score = 0
+                scoreLabel.text = String(score)
                 
                 gameStarted = false
                 
